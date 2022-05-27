@@ -7,9 +7,9 @@ CursorRow=61
 TopLine=42
 LeftChar=1
 [Editor_1]
-CursorCol=27
-CursorRow=58
-TopLine=32
+CursorCol=26
+CursorRow=43
+TopLine=33
 LeftChar=1
 [Editor_2]
 CursorCol=16
@@ -24,10 +24,10 @@ LeftChar=1
 [Editor_4]
 CursorCol=1
 CursorRow=226
-TopLine=199
+TopLine=154
 LeftChar=1
 [Editor_5]
-CursorCol=26
-CursorRow=186
-TopLine=149
+CursorCol=73
+CursorRow=361
+TopLine=344
 LeftChar=1

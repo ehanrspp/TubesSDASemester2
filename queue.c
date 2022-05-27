@@ -333,13 +333,37 @@ void ProsesAntrian(Queue *Q){
 	system("cls");
 	// Kamus //
 	addrQ P;
+	char inputProses[5];
 	
 	// Algoritma //
 	P = HEAD(*Q);
 	
 	printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
-	printf("					      PROSES ANTRIAN!\n");
+	printf("					     PROSES ANTRIAN!\n");
 	printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
+	if (P == NULL){
+		printf("\n	                               ** ANTRIAN MASIH KOSONG! **\n");
+	}else{
+			printf("				    Nama Hewan              : %s\n", Info(P).nama);
+			printf("				    Datang Menit ke         : %d\n", Info(P).waktuDatang);
+			printf("				    Waktu Layanan           : %d Menit\n", Info(P).waktuPelayanan);
+			printf("				    Jenis Penyakit          :\n");
+			PrintInfo(Info(P).listPenyakit, jenisPenyakit);
+			printf("				    Waktu Tunggu Pelayanan  : %d Menit\n", Info(P).waktuTunggu);
+			printf("				    Nilai Prioritas         : %d\n", Info(P).nilaiPrioritas);
+			printf("				    Waktu Mulai Pelayanan   : Menit Ke-%d\n", Info(P).waktuMulai);
+			printf("				    Waktu Selesai Pelayanan : Menit Ke-%d\n", Info(P).waktuAkhir);
+			printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
+			printf("\n\n				    Memulai Proses untuk %s? [YES/NO] ", Info(P).nama);
+			scanf("%s", inputProses);
+			if (strcmp(inputProses, "YES") == 0 || strcmp(inputProses, "yes") == 0){
+				DelQueue (&(*Q));
+				printf("\n				** SABAR YA KUCING MU SEDANG PROSES PENGOBATAN **\n");
+				printf("				                       ^_^\n");
+			}else if (strcmp(inputProses, "NO") == 0 || strcmp(inputProses, "no") == 0){
+				printf("\n				            ** KEMBALI KE MENU **\n");
+			}
+	}
 }
 
 /*
