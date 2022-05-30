@@ -3,9 +3,9 @@
 
 #include "queue.h"
 
+//////////// VARIABEL GLOBAL //////////////
 
-// Daftar Jenis Penyakit //
-char *jenisPenyakit[9] = {
+char *jenisPenyakit[9] = { // Daftar Jenis Penyakit //
 	"Penyakit Kulit",
 	"Luka Ringan",
 	"Bersin",
@@ -16,6 +16,11 @@ char *jenisPenyakit[9] = {
 	"Penyakit Kuning",
 	"Terkena Virus"
 };
+int tempWaktuDatangPertama; // variabel untuk menyimpan waktu datang pasien pertama
+infoPasien latest; // info pasien yang sudah dihapus
+
+////////////////////////////////////////////
+
 
 void CreateQueue (Queue *Q){
 	// Algoritma
@@ -82,7 +87,7 @@ void AddQue(Queue *Q, infoPasien X){
 		} 
 		Next(last) = P;
 		TAIL(*Q) = P;
-		SortQueue(*Q);
+		SortInfo(*Q);
 	}
 }
 
@@ -127,7 +132,11 @@ void SortByValuePriority(Queue Q){
 	infoPasien temp;
 	
 	// Algoritma
-	P = Next(HEAD(Q));
+	if (IsPasienPertama(Q)){
+		P = Next(HEAD(Q));
+	}else{
+		P = HEAD(Q);
+	}
 	while (P!=NULL){
 		setelah = Next(P);
 		
@@ -152,7 +161,11 @@ void SortByTimeArrive(Queue Q){
 	infoPasien temp;
 	
 	// Algoritma 
-	P = Next(HEAD(Q));
+	if (IsPasienPertama(Q)){
+		P = Next(HEAD(Q));
+	}else{
+		P = HEAD(Q);
+	}
 	while (P!=NULL){
 		setelah = Next(P);
 		
@@ -169,8 +182,8 @@ void SortByTimeArrive(Queue Q){
 	}
 }
 
-// Sorting QUEUE
-void SortQueue(Queue Q){
+// Sorting Info
+void SortInfo(Queue Q){
 	// Kamus Lokal
 	addrQ P;
 	infoPasien temp;
@@ -255,20 +268,24 @@ void HitungWaktuMulaiAkhirTunggu(Queue *Q){
 	P = HEAD(*Q);
 	
 	// Inisialisasi waktu Tunggu, waktu Mulai, dan waktu Akhir Untuk Info di HEAD.
-	Info(P).waktuTunggu = 0;
-	Info(P).waktuMulai = Info(P).waktuDatang;
-	Info(P).waktuAkhir = Info(P).waktuDatang + Info(P).waktuPelayanan;
-	
+	if (IsPasienPertama(*Q)){ //Menghitung waktu tunggu, mulai, dan akhir di head jika pasien pertama
+		Info(P).waktuTunggu = 0;
+		Info(P).waktuMulai = Info(P).waktuDatang;
+		Info(P).waktuAkhir = Info(P).waktuDatang + Info(P).waktuPelayanan;
+	}else if (P == HEAD(*Q)){ //Menghitung waktu tunggu, mulai, dan akhir di head jika bukan pasien pertama
+		Info(P).waktuTunggu = latest.waktuAkhir - Info(P).waktuDatang;
+		Info(P).waktuMulai = Info(P).waktuTunggu + Info(P).waktuDatang;
+		Info(P).waktuAkhir = Info(P).waktuMulai + Info(P).waktuPelayanan;
+	}
 	sebelum = P;
 	P = Next(P);
-	while(P != NULL){ // Jika Isi Queue nya lebih dari satu node
-		Info(P).waktuTunggu = Info(sebelum).waktuAkhir - Info(P).waktuDatang;
-		Info(P).waktuMulai = Info(P).waktuTunggu + Info(P).waktuDatang;
-		Info(P).waktuAkhir = Info(P).waktuMulai + Info(P).waktuPelayanan; 
-		sebelum = P;
-		P = Next(P);
-	}
-	
+		while(P != NULL){ // Jika Isi Queue nya lebih dari satu node
+			Info(P).waktuTunggu = Info(sebelum).waktuAkhir - Info(P).waktuDatang;
+			Info(P).waktuMulai = Info(P).waktuTunggu + Info(P).waktuDatang;
+			Info(P).waktuAkhir = Info(P).waktuMulai + Info(P).waktuPelayanan; 
+			sebelum = P;
+			P = Next(P);
+		}	
 }
 
 void PrintDaftarPenyakit(){
@@ -302,6 +319,9 @@ void Registrasi (Queue *Q){
 	scanf("%s", &X.nama); fflush(stdin);
 	printf("					Waktu Datang\t: ");
 	scanf("%d", &X.waktuDatang); fflush(stdin);
+	if (IsQueueEmpty(*Q)){
+		tempWaktuDatangPertama = X.waktuDatang;
+	}
 	PrintDaftarPenyakit();
 	printf("\n					Jumlah Penyakit\t\t: ");
 	scanf("%d", &jumlahPenyakit);
@@ -355,74 +375,21 @@ void ProsesAntrian(Queue *Q){
 			printf("				    Waktu Selesai Pelayanan : Menit Ke-%d\n", Info(P).waktuAkhir);
 			printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
 			printf("\n\n				    Memulai Proses untuk %s? [YES/NO] ", Info(P).nama);
+			P = Next(P);
 			scanf("%s", inputProses);
 			if (strcmp(inputProses, "YES") == 0 || strcmp(inputProses, "yes") == 0){
+				latest = Info(HEAD(*Q));
 				DelQueue (&(*Q));
 				printf("\n				** SABAR YA KUCING MU SEDANG PROSES PENGOBATAN **\n");
 				printf("				                       ^_^\n");
 			}else if (strcmp(inputProses, "NO") == 0 || strcmp(inputProses, "no") == 0){
 				printf("\n				            ** KEMBALI KE MENU **\n");
-			}
+			}			
 	}
 }
 
-/*
-void UIRegistrasi(infoPasien X, int jumlahPenyakit){
-	printf ("\t\t\t _____________________________________________________________________\n");
-    printf ("\t\t\t|                                                                     |\n");
-    printf ("\t\t\t|                             Registrasi                              |\n");
-    printf ("\t\t\t|                                                                     |\n");
-    printf ("\t\t\t|     Nama Hewan : %-20s                               |\n", X.nama);
-    printf ("\t\t\t|     Waktu Kedatangan (menit) : %d                                   |\n",X.waktuDatang);
-    printf ("\t\t\t|                                                                     |\n");
-    printf ("\t\t\t|                        - DAFTAR PENYAKIT -                          |\n");
-    printf ("\t\t\t|                        1. Penyakit Kulit                            |\n");
-    printf ("\t\t\t|                        2. Bersin                                    |\n");
-    printf ("\t\t\t|                        3. Luka Ringan                               |\n");
-    printf ("\t\t\t|                        4. Cacingan                                  |\n");
-    printf ("\t\t\t|                        5. Diare                                     |\n");
-    printf ("\t\t\t|                        6. Luka Dalam                                |\n");
-    printf ("\t\t\t|                        7. Kerongkongan Berlendir & Berbau           |\n");
-    printf ("\t\t\t|                        8. Penyakit Kuning                           |\n");
-    printf ("\t\t\t|                        9. Terinfeksi Virus                          |\n");
-    printf ("\t\t\t|                                                                     |\n");
-    printf ("\t\t\t|     ===========================================================     |\n");
-    printf ("\t\t\t|     Jumlah penyakit yang diderita : %d                               |\n",jumlahPenyakit);
-    printf ("\t\t\t|     Daftar penyakit yang diderita :                                 |\n");
-    PrintInfo(X.listPenyakit, jenisPenyakit);
-    printf ("\t\t\t|                                                                     |\n");
-    printf ("\t\t\t|                     HEWAN ANDA TELAH TERDAFTAR!                     |\n");
-    printf ("\t\t\t|_____________________________________________________________________|\n");
-    system("pause");
+boolean IsPasienPertama(Queue Q){
+	return (tempWaktuDatangPertama == Info(HEAD(Q)).waktuDatang);
 }
-*/
 
-/*
-void CetakQueue(Queue Q){
-	// kamus lokal //
-	addrQ P;
-	int i=0;
-	
-	// algoritma //
-	system("cls");
-	P = HEAD(Q);
-	printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
-	printf("					      DAFTAR ANTRIAN\n");
-	printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
-	if (P == NULL){
-		printf("\n	                               ** ANTRIAN MASIH KOSONG! **\n");
-	}else{
-		while (P != NULL){
-			printf(" Nama : %s\n", Info(P).nama);
-			printf(" waktu Datang : %d\n", Info(P).waktuDatang);
-			printf(" nilai Prioritas : %d\n", Info(P).nilaiPrioritas);
-			printf(" waktu Pelayanan : %d\n", Info(P).waktuPelayanan);
-			printf(" waktu Tunggu : %d\n", Info(P).waktuTunggu);
-			printf(" waktu Mulai : %d\n", Info(P).waktuMulai);
-			printf(" waktu Akhir : %d\n\n", Info(P).waktuAkhir);
-			P = Next(P);
-		}
-	}
-}
-*/
 #endif

@@ -75,56 +75,5 @@ int main(int argc, char *argv[]) {
 			system("pause");
 		}
 	}while (inputMenu != 5);
-	
-	
-/*
-	// Test Queue //
-	printf("\nQUEUE\n");
-	Queue Q;
-	CreateQueue (&Q);
-	infoPasien Y;
-	
-	//Disini Head//
-	Y.waktuDatang = 17; 
-	strcpy(Y.nama,"Sisi");
-	Y.nilaiPrioritas = HitungNilaiPrioritas(2, 0, 0);
-	Y.waktuPelayanan = HitungWaktuPelayanan(2, 0, 0);
-	AddQue (&Q,Y);
-	HitungWaktuMulaiAkhirTunggu(&Q);
-	
-	Y.waktuDatang = 5; 
-	strcpy(Y.nama,"Inu");
-	Y.nilaiPrioritas = HitungNilaiPrioritas(0, 3, 0);
-	Y.waktuPelayanan = HitungWaktuPelayanan(0, 3, 0);
-	AddQue (&Q,Y);
-	HitungWaktuMulaiAkhirTunggu(&Q);
-	
-	Y.waktuDatang = 9; 
-	strcpy(Y.nama,"Zuka");
-	Y.nilaiPrioritas = HitungNilaiPrioritas(0, 0, 1);
-	Y.waktuPelayanan = HitungWaktuPelayanan(0, 0, 1);
-	AddQue (&Q,Y);
-	HitungWaktuMulaiAkhirTunggu(&Q);
-	
-	Y.waktuDatang = 0; 
-	strcpy(Y.nama,"Roni");
-	Y.nilaiPrioritas = HitungNilaiPrioritas(0, 1, 0);
-	Y.waktuPelayanan = HitungWaktuPelayanan(0, 1, 0);
-	AddQue (&Q,Y);
-	HitungWaktuMulaiAkhirTunggu(&Q);
-	
-	Y.waktuDatang = 17; 
-	strcpy(Y.nama,"JOJO");
-	Y.nilaiPrioritas = HitungNilaiPrioritas(0, 3, 0);
-	Y.waktuPelayanan = HitungWaktuPelayanan(0, 3, 0);
-	AddQue (&Q,Y);
-	HitungWaktuMulaiAkhirTunggu(&Q);
-	
-	CetakQueue(Q);
-	
-	printf("\n\nCoba Di Delete : \n");
-	DelQueue (&Q);
-	CetakQueue(Q);
-*/
 	return 0;
 }
