@@ -16,18 +16,25 @@ char *jenisPenyakit[9] = { // Daftar Jenis Penyakit //
 	"Penyakit Kuning",
 	"Terkena Virus"
 };
-int tempWaktuDatangPertama; // variabel untuk menyimpan waktu datang pasien pertama
+TIME tempWaktuDatangPertama; // variabel untuk menyimpan waktu datang pasien pertama
+TIME tempWaktuDatangSebelum; // variabel untuk menyimpan waktu datang pasien sebelumnya
 infoPasien latest; // info pasien yang sudah dihapus
 
 ////////////////////////////////////////////
 
 
+// Author    : Bapak Lukman Nul Hakim (Modify by Muhamad Naufal Al.Ghani)
+/* Deksripsi : Modul Procedure yang berfungsi untuk membuat Queue, dengan
+               menginisialisasikan HEAD(*Q) dan TAIL(*Q) sebagai NULL */
 void CreateQueue (Queue *Q){
 	// Algoritma
 	HEAD(*Q) = NULL;
 	TAIL(*Q) = NULL;
 }
 
+// Author    : Bapak Lukman Nul Hakim (Modify by Muhamad Naufal Al.Ghani)
+/* Deksripsi : Modul Function yang berfungsi untuk mengalokasikan
+               sebuah node */
 addrQ Alokasi (infoPasien X){
 	// Kamus Lokal
 	addrQ P;
@@ -43,19 +50,24 @@ addrQ Alokasi (infoPasien X){
 	}
 }
 
-
+// Author    : Bapak Lukman Nul Hakim (Modify by Muhamad Naufal Al.Ghani)
+/* Deksripsi : Modul Procedure yang berfungsi untuk meng dealokasi kan
+               sebuah pointer address */
 void Dealokasi (addrQ P){
 	// Algoritma
 	Next(P) = NULL;
 	free(P);
 }
 
+// Author    : Bapak Lukman Nul Hakim (Modify by Muhamad Naufal Al.Ghani)
+/* Deksripsi : Modul Functioin untuk mengecek apakah isi dari Queue itu kosong atau tidak */
 boolean IsQueueEmpty(Queue Q){
 	// Algoritma
 	return (HEAD(Q)==NULL && TAIL(Q)==NULL);
 }
 
-
+// Author    : Bapak Lukman Nul Hakim (Modify by Muhamad Naufal Al.Ghani)
+/* Deksripsi : Modul procedure untuk menghapus sebuah node di dalam antrian (Queue) */
 void DelQueue (Queue *Q){
 	// Kamus Lokal
 	addrQ P;
@@ -70,6 +82,10 @@ void DelQueue (Queue *Q){
 		printf("Antrian Kosong!");
 	}
 }
+
+// Author    : Bapak Lukman Nul Hakim (Modify by Muhamad Naufal Al.Ghani)
+/* Deksripsi : Modul procedure untuk menambah sebuah node ke dalam antrian (Queue) 
+               Lalu setelah di input akan ada proses sorting berdasarkan nilai prioritas pasien */
 
 void AddQue(Queue *Q, infoPasien X){ 
 	// kamus lokal //
@@ -87,10 +103,12 @@ void AddQue(Queue *Q, infoPasien X){
 		} 
 		Next(last) = P;
 		TAIL(*Q) = P;
-		SortInfo(*Q);
+		SortByValuePriority(*Q);
 	}
 }
 
+// Author    : Muhamad Naufal Al.Ghani
+/* Deksripsi : Modul Procedure yang berfungsi pada fitur lihat daftar antrian */
 void LihatDaftarAntrian(Queue Q){
 	// kamus lokal //
 	addrQ P;
@@ -109,23 +127,22 @@ void LihatDaftarAntrian(Queue Q){
 			i++;
 			printf("				    		   NO.%d\n", i);
 			printf("				    Nama Hewan              : %s\n", Info(P).nama);
-			printf("				    Datang Menit ke         : %d\n", Info(P).waktuDatang);
+			printf("				    Datang Menit ke         : ");PrintJam(Info(P).waktuDatang);
 			printf("				    Waktu Layanan           : %d Menit\n", Info(P).waktuPelayanan);
 			printf("				    Jenis Penyakit          :\n");
 			PrintInfo(Info(P).listPenyakit, jenisPenyakit);
 			printf("				    Waktu Tunggu Pelayanan  : %d Menit\n", Info(P).waktuTunggu);
 			printf("				    Nilai Prioritas         : %d\n", Info(P).nilaiPrioritas);
-			printf("				    Waktu Mulai Pelayanan   : Menit Ke-%d\n", Info(P).waktuMulai);
-			printf("				    Waktu Selesai Pelayanan : Menit Ke-%d\n", Info(P).waktuAkhir);
+			printf("				    Waktu Mulai Pelayanan   : ");PrintJam(Info(P).waktuMulai);
+			printf("				    Waktu Selesai Pelayanan : ");PrintJam(Info(P).waktuAkhir);
 			printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
 			P = Next(P);
 		}
 	}
 }
-
-/* OTHERS */
- 
-// Sorting Berdasarkan Nilai Prioritas
+			
+// Author    : Muhamad Naufal Al.Ghani
+// Deksripsi : Modul Procedure yang berfungsi untuk meng sorting record info pasien berdasarkan nilai prioritas
 void SortByValuePriority(Queue Q){
 	// Kamus Lokal
 	addrQ P,setelah;
@@ -141,7 +158,7 @@ void SortByValuePriority(Queue Q){
 		setelah = Next(P);
 		
 		while (setelah!=NULL){
-			if (Info(P).nilaiPrioritas < Info(setelah).nilaiPrioritas){
+			if (Info(P).nilaiPrioritas < Info(setelah).nilaiPrioritas && TimeToMenit (Info(P).waktuAkhir) > TimeToMenit (Info(setelah).waktuDatang)){
 				//swap Info
 				temp = Info(P);
 				Info(P) = Info(setelah);
@@ -154,61 +171,8 @@ void SortByValuePriority(Queue Q){
 	
 }
 
-// Sorting Berdasarkan Waktu Datang
-void SortByTimeArrive(Queue Q){
-	// Kamus Lokal
-	addrQ P,setelah;
-	infoPasien temp;
-	
-	// Algoritma 
-	if (IsPasienPertama(Q)){
-		P = Next(HEAD(Q));
-	}else{
-		P = HEAD(Q);
-	}
-	while (P!=NULL){
-		setelah = Next(P);
-		
-		while (setelah!=NULL){
-			if (Info(P).waktuDatang > Info(setelah).waktuDatang && Info(P).nilaiPrioritas <= Info(setelah).nilaiPrioritas){
-				//swap Info
-				temp = Info(P);
-				Info(P) = Info(setelah);
-				Info(setelah) = temp;		
-			}
-			setelah = Next(setelah);
-		}
-		P = Next(P);
-	}
-}
-
-// Sorting Info
-void SortInfo(Queue Q){
-	// Kamus Lokal
-	addrQ P;
-	infoPasien temp;
-	
-	// Algoritma 
-	if (Info(HEAD(Q)).waktuDatang != 0){ //Handling jika Info waktu Datang di Head tidak sama dengan 0
-		P = HEAD(Q);
-		while(P!=NULL){
-			if(Info(P).waktuDatang == 0){
-				// swap //
-				temp = Info(P);
-				Info(P) = Info(HEAD(Q));
-				Info(HEAD(Q)) = temp;
-				break;
-			}
-			P = Next(P);
-		}
-	}
-	// Memulai Sorting
-	SortByValuePriority(Q);
-	SortByTimeArrive(Q);
-}
-
-
-// Function yang berfungsi untuk menentukan kategori penyakit berdasarkan jenis penyakit yang dipilih
+// Author    : Muhamad Naufal Al.Ghani
+// Deskripsi : Function yang berfungsi untuk menentukan kategori penyakit berdasarkan jenis penyakit yang dipilih
 char *kategoriPenyakit(int Penyakit){
 	// Algoritma 
 	if (Penyakit >= 1 && Penyakit <= 3 ){
@@ -220,7 +184,8 @@ char *kategoriPenyakit(int Penyakit){
 	}	
 }
 
-// Function yang berfungsi menghitung nilai prioritas
+// Author    : Muhamad Naufal Al.Ghani
+// Deksripsi  : Function yang berfungsi menghitung nilai prioritas
 int HitungNilaiPrioritas(int Ringan, int Sedang, int Berat){
 	// Kamus lokal
 	int nilai = 1;
@@ -239,7 +204,8 @@ int HitungNilaiPrioritas(int Ringan, int Sedang, int Berat){
 	return nilai;
 }
 
-// Function yang berfungsi untuk mengecek waktu Pelayanan berdasarkan jenis penyakit yang dipilih
+// Author    : Muhamad Naufal Al.Ghani
+// Deskripsi  : Function yang berfungsi untuk mengecek waktu Pelayanan berdasarkan jenis penyakit yang dipilih
 int CekWaktuPelayanan(int Penyakit){	
 	// Algoritma 
 	if (Penyakit >= 1 && Penyakit <= 3 ){
@@ -251,15 +217,19 @@ int CekWaktuPelayanan(int Penyakit){
 	}
 }
 
-// Function yang berfungsi untuk menghitung waktu Pelayanaan
+// Author    : Muhamad Naufal Al.Ghani
+// Deksripsi : Function yang berfungsi untuk menghitung waktu Pelayanaan
 int HitungWaktuPelayanan(int Ringan, int Sedang, int Berat){
 	// Algoritma
 	return (Ringan*15) + (Sedang*30) + (Berat*45);
 }
 
-// Procedure yang berfungsi untuk menghitung Nilai (waktu) yang dinamis
-// Maksud dinamis disini yaitu Nilai yang berubah karena Kondisi Queue yang di sorting.
-// Nilai (waktu) dinamisnya yaitu : Waktu Tunggu, Wwaktu Mulai, dan Waktu Akhir
+
+// Author : Muhamad Naufal Al.Ghani
+/* Deskripsi : Procedure yang berfungsi untuk menghitung Nilai (waktu) yang dinamis
+               Maksud dinamis disini yaitu Nilai yang berubah karena Kondisi Queue yang di sorting.
+               Nilai (waktu) dinamisnya yaitu : Waktu Tunggu, Wwaktu Mulai, dan Waktu Akhir */
+
 void HitungWaktuMulaiAkhirTunggu(Queue *Q){
 	// Kamus Lokal 
 	addrQ P,sebelum;
@@ -268,28 +238,42 @@ void HitungWaktuMulaiAkhirTunggu(Queue *Q){
 	P = HEAD(*Q);
 	
 	// Inisialisasi waktu Tunggu, waktu Mulai, dan waktu Akhir Untuk Info di HEAD.
-	if (IsPasienPertama(*Q)){ //Menghitung waktu tunggu, mulai, dan akhir di head jika pasien pertama
+	if (IsPasienPertama(*Q) ){ //Menghitung waktu tunggu, mulai, dan akhir di head jika pasien pertama
 		Info(P).waktuTunggu = 0;
 		Info(P).waktuMulai = Info(P).waktuDatang;
-		Info(P).waktuAkhir = Info(P).waktuDatang + Info(P).waktuPelayanan;
+		Info(P).waktuAkhir = NextNMenit (Info(P).waktuDatang, Info(P).waktuPelayanan);
 	}else if (P == HEAD(*Q)){ //Menghitung waktu tunggu, mulai, dan akhir di head jika bukan pasien pertama
-		Info(P).waktuTunggu = latest.waktuAkhir - Info(P).waktuDatang;
-		Info(P).waktuMulai = Info(P).waktuTunggu + Info(P).waktuDatang;
-		Info(P).waktuAkhir = Info(P).waktuMulai + Info(P).waktuPelayanan;
+		Info(P).waktuTunggu = (TimeToMenit (latest.waktuAkhir) - TimeToMenit (Info(P).waktuDatang));
+		Info(P).waktuMulai = NextNMenit ((Info(P).waktuDatang), Info(P).waktuTunggu);
+		Info(P).waktuAkhir = NextNMenit (Info(P).waktuMulai, Info(P).waktuPelayanan);
 	}
-	sebelum = P;
-	P = Next(P);
+	// Inisialisasi waktu Tunggu, waktu Mulai, dan waktu Akhir Untuk Info bukan di HEAD.
+		sebelum = P;
+		P = Next(P);
 		while(P != NULL){ // Jika Isi Queue nya lebih dari satu node
-			Info(P).waktuTunggu = Info(sebelum).waktuAkhir - Info(P).waktuDatang;
-			Info(P).waktuMulai = Info(P).waktuTunggu + Info(P).waktuDatang;
-			Info(P).waktuAkhir = Info(P).waktuMulai + Info(P).waktuPelayanan; 
+			if (TimeToMenit (Info(P).waktuDatang) > TimeToMenit (Info(sebelum).waktuAkhir)){
+				Info(P).waktuTunggu = 0;
+				Info(P).waktuMulai = Info(P).waktuDatang;
+				Info(P).waktuAkhir = NextNMenit (Info(P).waktuDatang, Info(P).waktuPelayanan);
+			}else{
+				Info(P).waktuTunggu = (TimeToMenit (Info(sebelum).waktuAkhir) - TimeToMenit (Info(P).waktuDatang));
+				Info(P).waktuMulai = NextNMenit ((Info(P).waktuDatang), Info(P).waktuTunggu);
+				Info(P).waktuAkhir = NextNMenit (Info(P).waktuMulai, Info(P).waktuPelayanan); 	
+			}
 			sebelum = P;
 			P = Next(P);
 		}	
+	
 }
 
+// Author    : Muhamad Naufal Al.Ghani
+// Deskripsi : Modul Procedure yang berfungsi untuk menampilkan daftar penyakit 
+
 void PrintDaftarPenyakit(){
+	// kamus lokal
 	int i;
+	
+	// algoritma 
 	printf("\n				___________________________________________\n");
 	printf("			       |	    - DAFTAR PENYAKIT -            |\n");
 	printf("                               |                                           |\n");
@@ -299,6 +283,9 @@ void PrintDaftarPenyakit(){
 	printf("			       |___________________________________________|\n");
 }
 
+// Author    : Muhamad Naufal Al.Ghani
+/* Deksripsi : Modul Procedure yang berfungsi sebagai fitur registrasi pasien, dan hasil registrasinya
+               akan di add ke queue */
 void Registrasi (Queue *Q){
 	system("cls");
 	// Kamus lokal 
@@ -315,13 +302,31 @@ void Registrasi (Queue *Q){
 	printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
 	printf("					        REGISTRASI\n");
 	printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
-	printf("					Nama Hewan\t: ");
+	printf("				    Nama Hewan\t\t : ");
 	scanf("%s", &X.nama); fflush(stdin);
-	printf("					Waktu Datang\t: ");
-	scanf("%d", &X.waktuDatang); fflush(stdin);
+	
+	do{
+		printf("				    Waktu Datang [HH MM] : ");
+		scanf("%d %d", &X.waktuDatang.Hour, &X.waktuDatang.Minute); fflush(stdin);
+//		if (!IsJamValid(X.waktuDatang)){
+//			printf("\nERROR!");
+//			printf("\nInput Waktu Datang Tidak Valid!\n");
+//			printf("Mohon Coba Lagi!\n\n");
+//			system("pause");
+//		}
+//		if (!IsWaktuDatangValid (X.waktuDatang, *Q)){
+//			printf("\nERROR!");
+//			printf("\nInput Waktu Datang Harus Sesudah Pasien Sebelumnya!\n");
+//			printf("Mohon Coba Lagi!\n\n");
+//			system("pause");
+//		}
+	}while (!IsJamValid(X.waktuDatang) || !IsWaktuDatangValid (X.waktuDatang, *Q));
+	
+
 	if (IsQueueEmpty(*Q)){
-		tempWaktuDatangPertama = X.waktuDatang;
+		tempWaktuDatangPertama = X.waktuDatang; // inisialisasi pasien pertama, berdasarkan field waktu datang nya.
 	}
+	
 	PrintDaftarPenyakit();
 	printf("\n					Jumlah Penyakit\t\t: ");
 	scanf("%d", &jumlahPenyakit);
@@ -344,11 +349,17 @@ void Registrasi (Queue *Q){
 	X.waktuPelayanan = HitungWaktuPelayanan (CountRingan,CountSedang,CountBerat);
 	AddQue (&(*Q),X);
 	HitungWaktuMulaiAkhirTunggu (&(*Q));
+	tempWaktuDatangSebelum = X.waktuDatang;
 	printf("\n\n");
 	printf("	                          ======= HEWAN ANDA TELAH TERDAFTAR! ========\n");
 	
 }
 
+// Author    : Muhamad Naufal Al.Ghani
+/* Deskripsi : Modul procedure yang berfungsi pada fitur proses antrian, dan 
+               jika user input 'yes' maka antrian di head akan keluar, dan jika
+               user input 'no' maka akan kembali ke menu */
+               
 void ProsesAntrian(Queue *Q){
 	system("cls");
 	// Kamus //
@@ -365,14 +376,14 @@ void ProsesAntrian(Queue *Q){
 		printf("\n	                               ** ANTRIAN MASIH KOSONG! **\n");
 	}else{
 			printf("				    Nama Hewan              : %s\n", Info(P).nama);
-			printf("				    Datang Menit ke         : %d\n", Info(P).waktuDatang);
+			printf("				    Datang Menit ke         : ");PrintJam(Info(P).waktuDatang);
 			printf("				    Waktu Layanan           : %d Menit\n", Info(P).waktuPelayanan);
 			printf("				    Jenis Penyakit          :\n");
 			PrintInfo(Info(P).listPenyakit, jenisPenyakit);
 			printf("				    Waktu Tunggu Pelayanan  : %d Menit\n", Info(P).waktuTunggu);
 			printf("				    Nilai Prioritas         : %d\n", Info(P).nilaiPrioritas);
-			printf("				    Waktu Mulai Pelayanan   : Menit Ke-%d\n", Info(P).waktuMulai);
-			printf("				    Waktu Selesai Pelayanan : Menit Ke-%d\n", Info(P).waktuAkhir);
+			printf("				    Waktu Mulai Pelayanan   : ");PrintJam(Info(P).waktuMulai);
+			printf("				    Waktu Selesai Pelayanan : ");PrintJam(Info(P).waktuAkhir);
 			printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
 			printf("\n\n				    Memulai Proses untuk %s? [YES/NO] ", Info(P).nama);
 			P = Next(P);
@@ -388,8 +399,22 @@ void ProsesAntrian(Queue *Q){
 	}
 }
 
+// Author    : Muhamad Naufal Al.Ghani
+/* Deksripsi : Modul Function yang berfungsi untuk mengecek sebuah node, apakah
+               info pasien yang mau di cek itu merupakan pasien pertama atau tidak ,
+			   yang proses pengecekan nya berdasarkan waktu kedatangan nya*/             
 boolean IsPasienPertama(Queue Q){
-	return (tempWaktuDatangPertama == Info(HEAD(Q)).waktuDatang);
+	return (tempWaktuDatangPertama.Hour == Info(HEAD(Q)).waktuDatang.Hour && tempWaktuDatangPertama.Minute == Info(HEAD(Q)).waktuDatang.Minute);
 }
 
+// Author    : Muhamad Naufal Al.Ghani
+/* Deskripsi : Modul Function yang berfungsi untuk mengecek apakah input 
+               waktu datang lebih besar dari pada waktu datang sebelum
+               atau tidak */
+boolean IsWaktuDatangValid (TIME input, Queue Q){
+	if (IsQueueEmpty (Q)){
+		return true;
+	}
+	return (TimeToMenit (input) > TimeToMenit (tempWaktuDatangSebelum));
+}
 #endif

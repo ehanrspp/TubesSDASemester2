@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "boolean.h"
 #include "list.h"
+#include "time.h"
 #include <string.h>
 #include <stdlib.h>
 
@@ -16,11 +17,11 @@
 
 typedef struct{
 	char nama[25];  // Nama Hewan
-	int waktuDatang; // Waktu Kedatangan
-	int waktuPelayanan; // lama waktu hean di proses
+	TIME waktuDatang; // Waktu Kedatangan
+	int waktuPelayanan; // lama waktu hewan di proses
 	int waktuTunggu; // Lama waktu tunggu jika masih ada antrian sebelumnya
-	int waktuMulai; // waktu dimulai nya hewan di proses
-	int waktuAkhir; // waktu selesai hewan di proses
+	TIME waktuMulai; // waktu dimulai nya hewan di proses
+	TIME waktuAkhir; // waktu selesai hewan di proses
 	int nilaiPrioritas; // nilai prioritas berdasarkan jumlah dan jenis penyakit yang dipilih
 	List listPenyakit; // list penyakit yang di derita hean
 }infoPasien;
@@ -55,5 +56,5 @@ void Registrasi (Queue *Q);
 void PrintDaftarPenyakit();
 void ProsesAntrian(Queue *Q);
 boolean IsPasienPertama(Queue Q);
-
+boolean IsWaktuDatangValid (TIME input, Queue Q);
 #endif

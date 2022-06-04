@@ -154,6 +154,8 @@ void InsertAfter(List *L, address P, address Prec)
 	Next(Prec)=P;
 }
 
+// Author    : Bapak Ade Chandra Nugraha (Modify by Muhamad Naufal Al.Ghani)
+// Deksripsi : Modul Procedure untuk menampilkan list penyakit yang diderita suatu pasien 
 void PrintInfo(List L, char **kategoriPenyakit)
 { 
 	/* Kamus Lokal */
