@@ -127,7 +127,7 @@ void LihatDaftarAntrian(Queue Q){
 			i++;
 			printf("				    		   NO.%d\n", i);
 			printf("				    Nama Hewan              : %s\n", Info(P).nama);
-			printf("				    Datang Menit ke         : ");PrintJam(Info(P).waktuDatang);
+			printf("				    Datang Pukul            : ");PrintJam(Info(P).waktuDatang);
 			printf("				    Waktu Layanan           : %d Menit\n", Info(P).waktuPelayanan);
 			printf("				    Jenis Penyakit          :\n");
 			PrintInfo(Info(P).listPenyakit, jenisPenyakit);
@@ -376,7 +376,7 @@ void ProsesAntrian(Queue *Q){
 		printf("\n	                               ** ANTRIAN MASIH KOSONG! **\n");
 	}else{
 			printf("				    Nama Hewan              : %s\n", Info(P).nama);
-			printf("				    Datang Menit ke         : ");PrintJam(Info(P).waktuDatang);
+			printf("				    Datang Pukul            : ");PrintJam(Info(P).waktuDatang);
 			printf("				    Waktu Layanan           : %d Menit\n", Info(P).waktuPelayanan);
 			printf("				    Jenis Penyakit          :\n");
 			PrintInfo(Info(P).listPenyakit, jenisPenyakit);
