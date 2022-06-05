@@ -2,7 +2,7 @@
  *	File : jam.h
  *	Nama : Asri Maspupah
  *	deskripsi : Header file dari prototype Time
- *  source : https://github.com/zharmedia386/Data-Structures-and-Algorithms/tree/main/2.%20ADT%20Time (github kakak tingkat)
+ *  source : https://github.com/zharmedia386/Data-Structures-and-Algorithms/tree/main/2.%20ADT%20Time (github kakak tingkat) modify by Muhammad Fadhil
  */
  
 #ifndef TIME_H
@@ -48,10 +48,6 @@ void ReadTIME (TIME *J);
 /* Proses : mengulangi membaca komponen H,M,S sehingga membentuk J yang valid.*/
 /* Tidak mungkin menghasilkan J yang tidak valid */
 
-void PrintTIME (TIME J);
-/* I.S. : J sembarang */
-/* F.S. : Nilai J ditulis dg format HH:MM:SS */
-/* Proses : menulis nilai setiap komponen J ke layar */ 
 /*****************************************************************/
 
 /** { kelompok Validasi Type } **/
@@ -80,6 +76,10 @@ TIME MenitToTime (long int N);
 /*****************************************************************/
 
 void PrintJam (TIME J);
+/* I.S. : J sembarang */
+/* F.S. : Nilai J ditulis dg format HH:MM:SS */
+/* Proses : menulis nilai setiap komponen J ke layar */ 
+/*****************************************************************/
 
 TIME NextNMenit (TIME J, int N);
 

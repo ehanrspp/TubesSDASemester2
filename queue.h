@@ -45,8 +45,6 @@ void DelQueue (Queue *Q);
 void AddQue (Queue *Q, infoPasien X);
 void LihatDaftarAntrian(Queue Q);
 void SortByValuePriority(Queue Q);
-void SortByTimeArrive(Queue Q);
-void SortInfo(Queue Q);
 char *kategoriPenyakit(int Penyakit);
 int HitungNilaiPrioritas(int Ringan, int Sedang, int Berat);
 int CekWaktuPelayanan(int Penyakit);
@@ -56,5 +54,5 @@ void Registrasi (Queue *Q);
 void PrintDaftarPenyakit();
 void ProsesAntrian(Queue *Q);
 boolean IsPasienPertama(Queue Q);
-boolean IsWaktuDatangValid (TIME input, Queue Q);
+boolean IsTimeArriveHigherThanBefore (TIME input, Queue Q);
 #endif

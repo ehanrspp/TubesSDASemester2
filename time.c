@@ -28,10 +28,6 @@ void SetMinute(TIME *J, int newMinute)
     (*J).Minute = newMinute;
 }
 
-void PrintTIME (TIME J)
-{
-    printf("%d:%d\n", J.Hour, J.Minute);
-}
 
 boolean IsJamValid (TIME J)
 {

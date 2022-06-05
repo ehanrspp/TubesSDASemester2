@@ -1,3 +1,8 @@
+/* File        : list1.h */
+/* Deskripsi   : ADT list berkait dengan representasi fisik pointer */
+/*		 Representasi address dengan pointer */
+/*		 InfoType adalah integer */
+/* Dibuat oleh : Ade Chandra Nugraha */
 #ifndef LIST_H
 #define LIST_H
 

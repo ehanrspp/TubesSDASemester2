@@ -23,7 +23,7 @@ infoPasien latest; // info pasien yang sudah dihapus
 ////////////////////////////////////////////
 
 
-// Author    : Bapak Lukman Nul Hakim (Modify by Muhamad Naufal Al.Ghani)
+// Author    : Raihan Shidqi Pangestu
 /* Deksripsi : Modul Procedure yang berfungsi untuk membuat Queue, dengan
                menginisialisasikan HEAD(*Q) dan TAIL(*Q) sebagai NULL */
 void CreateQueue (Queue *Q){
@@ -32,7 +32,7 @@ void CreateQueue (Queue *Q){
 	TAIL(*Q) = NULL;
 }
 
-// Author    : Bapak Lukman Nul Hakim (Modify by Muhamad Naufal Al.Ghani)
+// Author    : Muhammad Fadhil
 /* Deksripsi : Modul Function yang berfungsi untuk mengalokasikan
                sebuah node */
 addrQ Alokasi (infoPasien X){
@@ -50,7 +50,7 @@ addrQ Alokasi (infoPasien X){
 	}
 }
 
-// Author    : Bapak Lukman Nul Hakim (Modify by Muhamad Naufal Al.Ghani)
+// Author    : Raihan Shidqi Pangestu
 /* Deksripsi : Modul Procedure yang berfungsi untuk meng dealokasi kan
                sebuah pointer address */
 void Dealokasi (addrQ P){
@@ -59,14 +59,14 @@ void Dealokasi (addrQ P){
 	free(P);
 }
 
-// Author    : Bapak Lukman Nul Hakim (Modify by Muhamad Naufal Al.Ghani)
+// Author    : Muhammad Fadhil
 /* Deksripsi : Modul Functioin untuk mengecek apakah isi dari Queue itu kosong atau tidak */
 boolean IsQueueEmpty(Queue Q){
 	// Algoritma
 	return (HEAD(Q)==NULL && TAIL(Q)==NULL);
 }
 
-// Author    : Bapak Lukman Nul Hakim (Modify by Muhamad Naufal Al.Ghani)
+// Author    : Muhamad Naufal Al.Ghani
 /* Deksripsi : Modul procedure untuk menghapus sebuah node di dalam antrian (Queue) */
 void DelQueue (Queue *Q){
 	// Kamus Lokal
@@ -83,7 +83,7 @@ void DelQueue (Queue *Q){
 	}
 }
 
-// Author    : Bapak Lukman Nul Hakim (Modify by Muhamad Naufal Al.Ghani)
+// Author    : Muhamad Naufal Al.Ghani
 /* Deksripsi : Modul procedure untuk menambah sebuah node ke dalam antrian (Queue) 
                Lalu setelah di input akan ada proses sorting berdasarkan nilai prioritas pasien */
 
@@ -107,7 +107,7 @@ void AddQue(Queue *Q, infoPasien X){
 	}
 }
 
-// Author    : Muhamad Naufal Al.Ghani
+// Author    : Raihan Shidqi Pangestu
 /* Deksripsi : Modul Procedure yang berfungsi pada fitur lihat daftar antrian */
 void LihatDaftarAntrian(Queue Q){
 	// kamus lokal //
@@ -175,7 +175,7 @@ void SortByValuePriority(Queue Q){
 	
 }
 
-// Author    : Muhamad Naufal Al.Ghani
+// Author    : Muhammad Fadhil
 // Deskripsi : Function yang berfungsi untuk menentukan kategori penyakit berdasarkan jenis penyakit yang dipilih
 char *kategoriPenyakit(int Penyakit){
 	// Algoritma 
@@ -188,7 +188,7 @@ char *kategoriPenyakit(int Penyakit){
 	}	
 }
 
-// Author    : Muhamad Naufal Al.Ghani
+// Author     : Raihan Shidqi Pangestu
 // Deksripsi  : Function yang berfungsi menghitung nilai prioritas
 int HitungNilaiPrioritas(int Ringan, int Sedang, int Berat){
 	// Kamus lokal
@@ -229,7 +229,7 @@ int HitungWaktuPelayanan(int Ringan, int Sedang, int Berat){
 }
 
 
-// Author : Muhamad Naufal Al.Ghani
+// Author    : Muhamad Naufal Al.Ghani
 /* Deskripsi : Procedure yang berfungsi untuk menghitung Nilai (waktu) yang dinamis
                Maksud dinamis disini yaitu Nilai yang berubah karena Kondisi Queue yang di sorting.
                Nilai (waktu) dinamisnya yaitu : Waktu Tunggu, Wwaktu Mulai, dan Waktu Akhir */
@@ -270,7 +270,7 @@ void HitungWaktuMulaiAkhirTunggu(Queue *Q){
 	
 }
 
-// Author    : Muhamad Naufal Al.Ghani
+// Author    : Raihan Shidqi Pangestu
 // Deskripsi : Modul Procedure yang berfungsi untuk menampilkan daftar penyakit 
 
 void PrintDaftarPenyakit(){
@@ -304,32 +304,32 @@ void Registrasi (Queue *Q){
 	CreateList(&X.listPenyakit);
 	
 	printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
-	printf(" ______     ______     ______     __     ______     ______   ______     ______     ______     __    \n");
-	printf("/%c  == %c   /%c  ___%c   /%c  ___%c   /%c %c   /%c  ___%c   /%c__  _%c /%c  == %c   /%c  __ %c   /%c  ___%c   /%c %c   \n",92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92);
-	printf("%c %c  __<   %c %c  __%c   %c %c %c__ %c  %c %c %c  %c %c___  %c  %c/_/%c %c/ %c %c  __<   %c %c  __ %c  %c %c___  %c  %c %c %c  \n",92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92);
-	printf(" %c %c_%c %c_%c  %c %c_____%c  %c %c_____%c  %c %c_%c  %c/%c_____%c    %c %c_%c  %c %c_%c %c_%c  %c %c_%c %c_%c  %c/%c_____%c  %c %c_%c \n",92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92);
-	printf("  %c/_/ /_/   %c/_____/   %c/_____/   %c/_/   %c/_____/     %c/_/   %c/_/ /_/   %c/_/%c/_/   %c/_____/   %c/_/ \n",92,92,92,92,92,92,92,92,92,92,92);
-	printf("    ");
-	printf("\n				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
+	printf("           ______     ______     ______     __     ______     ______   ______     ______     ______     __    \n");
+	printf("          /%c  == %c   /%c  ___%c   /%c  ___%c   /%c %c   /%c  ___%c   /%c__  _%c /%c  == %c   /%c  __ %c   /%c  ___%c   /%c %c   \n",92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92);
+	printf("          %c %c  __<   %c %c  __%c   %c %c %c__ %c  %c %c %c  %c %c___  %c  %c/_/%c %c/ %c %c  __<   %c %c  __ %c  %c %c___  %c  %c %c %c  \n",92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92);
+	printf("           %c %c_%c %c_%c  %c %c_____%c  %c %c_____%c  %c %c_%c  %c/%c_____%c    %c %c_%c  %c %c_%c %c_%c  %c %c_%c %c_%c  %c/%c_____%c  %c %c_%c \n",92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92);
+	printf("            %c/_/ /_/   %c/_____/   %c/_____/   %c/_/   %c/_____/     %c/_/   %c/_/ /_/   %c/_/%c/_/   %c/_____/   %c/_/ \n",92,92,92,92,92,92,92,92,92,92,92);
+
+	printf("               \n				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
 	printf("				    Nama Hewan\t\t : ");
 	scanf("%s", &X.nama); fflush(stdin);
 	
 	do{
 		printf("				    Waktu Datang [HH MM] : ");
 		scanf("%d %d", &X.waktuDatang.Hour, &X.waktuDatang.Minute); fflush(stdin);
-//		if (!IsJamValid(X.waktuDatang)){
-//			printf("\nERROR!");
-//			printf("\nInput Waktu Datang Tidak Valid!\n");
-//			printf("Mohon Coba Lagi!\n\n");
-//			system("pause");
-//		}
-//		if (!IsWaktuDatangValid (X.waktuDatang, *Q)){
-//			printf("\nERROR!");
-//			printf("\nInput Waktu Datang Harus Sesudah Pasien Sebelumnya!\n");
-//			printf("Mohon Coba Lagi!\n\n");
-//			system("pause");
-//		}
-	}while (!IsJamValid(X.waktuDatang) || !IsWaktuDatangValid (X.waktuDatang, *Q));
+		if (!IsJamValid(X.waktuDatang)){
+			printf("\nERROR!");
+			printf("\nInput Waktu Datang Tidak Valid!\n");
+			printf("Mohon Coba Lagi!\n\n");
+			system("pause");
+		}
+		if (!IsTimeArriveHigherThanBefore (X.waktuDatang, *Q)){
+			printf("\nERROR!");
+			printf("\nInput Waktu Datang Harus Sesudah Pasien Sebelumnya! --> ");PrintJam(tempWaktuDatangSebelum);
+			printf("Mohon Coba Lagi!\n\n");
+			system("pause");
+		}
+	}while (!IsJamValid(X.waktuDatang) || !IsTimeArriveHigherThanBefore (X.waktuDatang, *Q));
 	
 
 	if (IsQueueEmpty(*Q)){
@@ -424,7 +424,7 @@ boolean IsPasienPertama(Queue Q){
 /* Deskripsi : Modul Function yang berfungsi untuk mengecek apakah input 
                waktu datang lebih besar dari pada waktu datang sebelum
                atau tidak */
-boolean IsWaktuDatangValid (TIME input, Queue Q){
+boolean IsTimeArriveHigherThanBefore (TIME input, Queue Q){
 	if (IsQueueEmpty (Q)){
 		return true;
 	}
