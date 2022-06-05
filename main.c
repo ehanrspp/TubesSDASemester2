@@ -11,7 +11,12 @@ void UIMenu(){
 	printf ("\t\t\t ____________________________________________________________________\n");
 	printf ("\t\t\t|                                                                    |\n");
 	printf ("\t\t\t|                        LAYANAN APLIKASI HEWAN                      |\n");
-	printf ("\t\t\t|                             HasAChance                             |\n");
+	printf ("\t\t\t|  _    _                          _____ _                           |\n");
+	printf ("\t\t\t| | |  | |                   /%c   / ____| |                          |\n",92);
+	printf ("\t\t\t| | |__| | __ ___   _____   /  %c | |    | |__   __ _ _ __   ___ ___  |\n",92);
+	printf ("\t\t\t| |  __  |/ _` %c %c / / _ %c / /%c %c| |    | '_ %c / _` | '_ %c / __/ _ %c  |\n",92,92,92,92,92,92,92);
+	printf ("\t\t\t| | |  | | (_| |%c V /  __// ____ %c |____| | | | (_| | | | | (_|  __/ |\n",92,92);
+	printf ("\t\t\t| |_|  |_|%c__,_| %c_/ %c___/_/    %c_%c_____|_| |_|%c__,_|_| |_|%c___%c___| |\n",92,92,92,92,92,92,92,92);
 	printf ("\t\t\t|                                                                    |\n");
 	printf ("\t\t\t|      =======================================================       |\n");
 	printf ("\t\t\t|       REGISTRASI   ANTRIAN   PROS. PELAYANAN   KREDIT   EXIT       |\n");

@@ -118,8 +118,12 @@ void LihatDaftarAntrian(Queue Q){
 	system("cls");
 	P = HEAD(Q);
 	printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
-	printf("					      DAFTAR ANTRIAN\n");
-	printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
+	printf("                        ____        ______                ___          __       _           \n");
+	printf("                       / __ %c____ _/ __/ /_____ ______   /   |  ____  / /______(_)___ _____ \n",92);
+	printf("                      / / / / __ `/ /_/ __/ __ `/ ___/  / /| | / __ %c/ __/ ___/ / __ `/ __ %c\n",92,92);
+	printf("                     / /_/ / /_/ / __/ /_/ /_/ / /     / ___ |/ / / / /_/ /  / / /_/ / / / /\n");
+	printf("                    /_____/%c__,_/_/  %c__/%c__,_/_/     /_/  |_/_/ /_/%c__/_/  /_/%c__,_/_/ /_/ \n",92,92,92,92,92);
+	printf("\n				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
 	if (P == NULL){
 		printf("\n	                               ** ANTRIAN MASIH KOSONG! **\n");
 	}else{
@@ -300,8 +304,13 @@ void Registrasi (Queue *Q){
 	CreateList(&X.listPenyakit);
 	
 	printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
-	printf("					        REGISTRASI\n");
-	printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
+	printf(" ______     ______     ______     __     ______     ______   ______     ______     ______     __    \n");
+	printf("/%c  == %c   /%c  ___%c   /%c  ___%c   /%c %c   /%c  ___%c   /%c__  _%c /%c  == %c   /%c  __ %c   /%c  ___%c   /%c %c   \n",92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92);
+	printf("%c %c  __<   %c %c  __%c   %c %c %c__ %c  %c %c %c  %c %c___  %c  %c/_/%c %c/ %c %c  __<   %c %c  __ %c  %c %c___  %c  %c %c %c  \n",92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92);
+	printf(" %c %c_%c %c_%c  %c %c_____%c  %c %c_____%c  %c %c_%c  %c/%c_____%c    %c %c_%c  %c %c_%c %c_%c  %c %c_%c %c_%c  %c/%c_____%c  %c %c_%c \n",92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92);
+	printf("  %c/_/ /_/   %c/_____/   %c/_____/   %c/_/   %c/_____/     %c/_/   %c/_/ /_/   %c/_/%c/_/   %c/_____/   %c/_/ \n",92,92,92,92,92,92,92,92,92,92,92);
+	printf("    ");
+	printf("\n				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
 	printf("				    Nama Hewan\t\t : ");
 	scanf("%s", &X.nama); fflush(stdin);
 	
@@ -370,7 +379,11 @@ void ProsesAntrian(Queue *Q){
 	P = HEAD(*Q);
 	
 	printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
-	printf("					     PROSES ANTRIAN!\n");
+	printf("                                                             _       _           \n");
+	printf("                          _ __ _ _ ___ ___ ___ ___  __ _ _ _| |_ _ _(_)__ _ _ _  \n");
+	printf("                         | '_ %c '_/ _ (_-</ -_|_-< / _` | ' %c  _| '_| / _` | ' %c \n",92,92);
+	printf("                         | .__/_| %c___/__/%c___/__/ %c__,_|_||_%c__|_| |_%c__,_|_||_|\n",92,92,92,92,92);
+	printf("                         |_|\n");
 	printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
 	if (P == NULL){
 		printf("\n	                               ** ANTRIAN MASIH KOSONG! **\n");
