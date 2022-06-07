@@ -12,6 +12,8 @@
 #include <stdlib.h>
 
 #define Info(P) (P)->info
+#define InfoPenyakit(P) (P)->info.Penyakit
+#define InfoKategori(P) (P)->info.kategori
 #define Next(P) (P)->next
 #define First(L) (L).First
 

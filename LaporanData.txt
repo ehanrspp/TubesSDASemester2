@@ -1,0 +1,34 @@
+				    Nama Hewan              : Ghani
+				    Datang Pukul            : 07:00
+				    Waktu Layanan           : 45 Menit
+				    Jenis Penyakit          : 
+                                                              1. Penyakit Kulit (Ringan)
+                                                              2. Luka Ringan (Ringan)
+                                                              3. Bersin (Ringan)
+				    Waktu Tunggu Pelayanan  : 0 Menit
+				    Nilai Prioritas         : 2
+				    Waktu Mulai Pelayanan   : 07:00
+				    Waktu Selesai Pelayanan : 07:45
+				    様様様様様様様様様様様様様様様様様
+				    Nama Hewan              : Fadhil
+				    Datang Pukul            : 07:30
+				    Waktu Layanan           : 90 Menit
+				    Jenis Penyakit          : 
+                                                              1. Penyakit Kuning (Berat)
+                                                              2. Terkena Virus (Berat)
+				    Waktu Tunggu Pelayanan  : 15 Menit
+				    Nilai Prioritas         : 4
+				    Waktu Mulai Pelayanan   : 07:45
+				    Waktu Selesai Pelayanan : 09:15
+				    様様様様様様様様様様様様様様様様様
+				    Nama Hewan              : Raihan
+				    Datang Pukul            : 07:25
+				    Waktu Layanan           : 60 Menit
+				    Jenis Penyakit          : 
+                                                              1. Cacingan (Sedang)
+                                                              2. Diare (Sedang)
+				    Waktu Tunggu Pelayanan  : 110 Menit
+				    Nilai Prioritas         : 3
+				    Waktu Mulai Pelayanan   : 09:15
+				    Waktu Selesai Pelayanan : 10:15
+				    様様様様様様様様様様様様様様様様様

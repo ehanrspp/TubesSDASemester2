@@ -19,7 +19,7 @@ char *jenisPenyakit[9] = { // Daftar Jenis Penyakit //
 TIME tempWaktuDatangPertama; // variabel untuk menyimpan waktu datang pasien pertama
 TIME tempWaktuDatangSebelum; // variabel untuk menyimpan waktu datang pasien sebelumnya
 infoPasien latest; // info pasien yang sudah dihapus
-
+int CountPasien = 0;
 ////////////////////////////////////////////
 
 
@@ -302,7 +302,7 @@ void Registrasi (Queue *Q){
 	
 	// Algoirtma
 	CreateList(&X.listPenyakit);
-	
+	CountPasien ++;
 	printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
 	printf("           ______     ______     ______     __     ______     ______   ______     ______     ______     __    \n");
 	printf("          /%c  == %c   /%c  ___%c   /%c  ___%c   /%c %c   /%c  ___%c   /%c__  _%c /%c  == %c   /%c  __ %c   /%c  ___%c   /%c %c   \n",92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92);
@@ -314,7 +314,7 @@ void Registrasi (Queue *Q){
 	printf("				    Nama Hewan\t\t : ");
 	scanf("%s", &X.nama); fflush(stdin);
 	
-	do{
+	do{ //User melakukan input waktuDatang, jika input tidak valid maka input akan diulang terus
 		printf("				    Waktu Datang [HH MM] : ");
 		scanf("%d %d", &X.waktuDatang.Hour, &X.waktuDatang.Minute); fflush(stdin);
 		if (!IsJamValid(X.waktuDatang)){
@@ -332,7 +332,7 @@ void Registrasi (Queue *Q){
 	}while (!IsJamValid(X.waktuDatang) || !IsTimeArriveHigherThanBefore (X.waktuDatang, *Q));
 	
 
-	if (IsQueueEmpty(*Q)){
+	if (CountPasien == 1){
 		tempWaktuDatangPertama = X.waktuDatang; // inisialisasi pasien pertama, berdasarkan field waktu datang nya.
 	}
 	
@@ -402,6 +402,7 @@ void ProsesAntrian(Queue *Q){
 			P = Next(P);
 			scanf("%s", inputProses);
 			if (strcmp(inputProses, "YES") == 0 || strcmp(inputProses, "yes") == 0){
+				WriteData(*Q);
 				latest = Info(HEAD(*Q));
 				DelQueue (&(*Q));
 				printf("\n				** SABAR YA KUCING MU SEDANG PROSES PENGOBATAN **\n");
@@ -409,6 +410,30 @@ void ProsesAntrian(Queue *Q){
 			}else if (strcmp(inputProses, "NO") == 0 || strcmp(inputProses, "no") == 0){
 				printf("\n				            ** KEMBALI KE MENU **\n");
 			}			
+	}
+}
+
+// Author    : Muhamad Naufal Al.Ghani
+// Deskripsi : Modul Procedure yang berfungsi untuk melihat info pasien yang sedang di proses.
+void LihatProses(Queue Q){
+	// algoritma
+	system("cls");
+    printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
+	printf("                                             Pasien Di Proses \n");
+	printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
+	if (latest.waktuPelayanan == 0){
+		printf("\n				  ** Belum Ada Pasien Yang Di Proses! **\n");
+	}else{
+		printf("				    Nama Hewan              : %s\n", latest.nama);
+		printf("				    Datang Pukul            : ");PrintJam(latest.waktuDatang);
+		printf("				    Waktu Layanan           : %d Menit\n", latest.waktuPelayanan);
+		printf("				    Jenis Penyakit          :\n");
+		PrintInfo(latest.listPenyakit, jenisPenyakit);
+		printf("				    Waktu Tunggu Pelayanan  : %d Menit\n", latest.waktuTunggu);
+		printf("				    Nilai Prioritas         : %d\n", latest.nilaiPrioritas);
+		printf("				    Waktu Mulai Pelayanan   : ");PrintJam(latest.waktuMulai);
+		printf("				    Waktu Selesai Pelayanan : ");PrintJam(latest.waktuAkhir);
+		printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
 	}
 }
 
@@ -425,9 +450,60 @@ boolean IsPasienPertama(Queue Q){
                waktu datang lebih besar dari pada waktu datang sebelum
                atau tidak */
 boolean IsTimeArriveHigherThanBefore (TIME input, Queue Q){
-	if (IsQueueEmpty (Q)){
+	if (CountPasien == 1){
 		return true;
 	}
 	return (TimeToMenit (input) > TimeToMenit (tempWaktuDatangSebelum));
 }
+
+// Author    : Muhamad Naufal Al.Ghani
+/* Deskripsi : Modul Procedure untuk menyimpan data pasien ke dalam file LaporanData.txt, sebagai laporan (Riwayat)
+               Data ini akan disimpan ketika pasien di proses */
+void WriteData (Queue Q){
+	// kamus lokal
+	addrQ P = HEAD(Q);
+	List L = Info(P).listPenyakit;
+	address AddL = First(L);
+	int i = 1;
+	
+	// algoritma
+	FILE *fp = fopen("LaporanData.txt", "a");
+	
+	fprintf(fp, "				    Nama Hewan              : %s\n", Info(P).nama);
+	fprintf(fp, "				    Datang Pukul            : %02d:%02d\n", GetHour(Info(P).waktuDatang), GetMinute (Info(P).waktuDatang));
+	fprintf(fp, "				    Waktu Layanan           : %d Menit\n", Info(P).waktuPelayanan);
+	fprintf(fp, "				    Jenis Penyakit          : \n");
+	while (AddL != NULL){
+		fprintf(fp,"                                                              %d. %s (%s)\n", i++, jenisPenyakit[InfoPenyakit(AddL)-1], InfoKategori(AddL));
+		AddL = Next(AddL);
+	}
+	fprintf(fp,"				    Waktu Tunggu Pelayanan  : %d Menit\n", Info(P).waktuTunggu);
+	fprintf(fp,"				    Nilai Prioritas         : %d\n", Info(P).nilaiPrioritas);
+	fprintf(fp,"				    Waktu Mulai Pelayanan   : %02d:%02d\n", GetHour(Info(P).waktuMulai), GetMinute (Info(P).waktuMulai));
+	fprintf(fp,"				    Waktu Selesai Pelayanan : %02d:%02d\n", GetHour(Info(P).waktuAkhir), GetMinute (Info(P).waktuAkhir));
+	fprintf(fp,"				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
+	fclose (fp);
+}
+
+// Author    : Muhamad Naufal Al.Ghani
+// Deskripsi : Modul Procedure untuk menampilkan laporan pasien (Riwayat Pasien) di dalam file LaporanData.txt
+void ReadData (){
+	system("cls");
+	// Kamus lokal
+	FILE *fo = fopen("LaporanData.txt", "r");
+	char Kata[6000];
+	// algoritma
+	printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
+	printf("                                             Laporan Pasien \n");
+	printf("				    \xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\xcd\n");
+	if (fo == NULL){
+		printf("== Tidak Ada File ==");
+	}else{
+		while (fgets(Kata, 6000, fo) != NULL){
+			printf("%s", Kata);
+		}
+	}
+	fclose (fo);
+}
+
 #endif

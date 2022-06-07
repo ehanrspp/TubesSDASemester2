@@ -53,6 +53,9 @@ void HitungWaktuMulaiAkhirTunggu(Queue *Q);
 void Registrasi (Queue *Q);
 void PrintDaftarPenyakit();
 void ProsesAntrian(Queue *Q);
+void LihatProses(Queue Q);
 boolean IsPasienPertama(Queue Q);
 boolean IsTimeArriveHigherThanBefore (TIME input, Queue Q);
+void WriteData (Queue Q);
+void ReadData ();
 #endif
