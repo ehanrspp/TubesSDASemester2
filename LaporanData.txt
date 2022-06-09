@@ -118,3 +118,25 @@
 				    Waktu Mulai Pelayanan   : 07:00
 				    Waktu Selesai Pelayanan : 07:30
 				    様様様様様様様様様様様様様様様様様
+				    Nama Hewan              : Lolo
+				    Datang Pukul            : 08:00
+				    Waktu Layanan           : 30 Menit
+				    Jenis Penyakit          : 
+                                                              1. Penyakit Kulit (Ringan)
+                                                              2. Luka Ringan (Ringan)
+				    Waktu Tunggu Pelayanan  : 0 Menit
+				    Nilai Prioritas         : 1
+				    Waktu Mulai Pelayanan   : 08:00
+				    Waktu Selesai Pelayanan : 08:30
+				    様様様様様様様様様様様様様様様様様
+				    Nama Hewan              : Bobon
+				    Datang Pukul            : 08:00
+				    Waktu Layanan           : 30 Menit
+				    Jenis Penyakit          : 
+                                                              1. Penyakit Kulit (Ringan)
+                                                              2. Luka Ringan (Ringan)
+				    Waktu Tunggu Pelayanan  : 0 Menit
+				    Nilai Prioritas         : 1
+				    Waktu Mulai Pelayanan   : 08:00
+				    Waktu Selesai Pelayanan : 08:30
+				    様様様様様様様様様様様様様様様様様

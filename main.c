@@ -10,7 +10,7 @@
 void UIMenu(){
     printf ("\t\t\t ____________________________________________________________________\n");
     printf ("\t\t\t|                                                                    |\n");
-    printf ("\t\t\t|                        LAYANAN APLIKASI HEWAN                      |\n");
+    printf ("\t\t\t|                   LAYANAN APLIKASI DOKTER HEWAN                    |\n");
     printf ("\t\t\t|  _    _                          _____ _                           |\n");
     printf ("\t\t\t| | |  | |                   /%c   / ____| |                          |\n",92);
     printf ("\t\t\t| | |__| | __ ___   _____   /  %c | |    | |__   __ _ _ __   ___ ___  |\n",92);
