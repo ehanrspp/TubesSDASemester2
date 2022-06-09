@@ -34,7 +34,7 @@ void UIExit(){
 	printf("\t\t\t\t\t|        TERIMA KASIH !       |\n");
 	printf("\t\t\t\t\t|     SAMPAI JUMPA KEMBALI    |\n");
 	printf("\t\t\t\t\t|             ^_^             |\n");
-	printf("\t\t\t\t\t|_____________________________|");
+	printf("\t\t\t\t\t|_____________________________|\n");
 }
 
 void UIKredit(){
@@ -83,6 +83,7 @@ int main(int argc, char *argv[]) {
 		}else if (inputMenu == 7){
 			system("cls");
 			UIExit();
+			system("pause");
 			exit(0);
 		}
 		else{

@@ -32,3 +32,89 @@
 				    Waktu Mulai Pelayanan   : 09:15
 				    Waktu Selesai Pelayanan : 10:15
 				    様様様様様様様様様様様様様様様様様
+				    Nama Hewan              : Meong
+				    Datang Pukul            : 07:15
+				    Waktu Layanan           : 30 Menit
+				    Jenis Penyakit          : 
+                                                              1. Diare (Sedang)
+				    Waktu Tunggu Pelayanan  : 0 Menit
+				    Nilai Prioritas         : 1
+				    Waktu Mulai Pelayanan   : 07:15
+				    Waktu Selesai Pelayanan : 07:45
+				    様様様様様様様様様様様様様様様様様
+				    Nama Hewan              : Snowy
+				    Datang Pukul            : 07:45
+				    Waktu Layanan           : 90 Menit
+				    Jenis Penyakit          : 
+                                                              1. Penyakit Kuning (Berat)
+                                                              2. Terkena Virus (Berat)
+				    Waktu Tunggu Pelayanan  : 0 Menit
+				    Nilai Prioritas         : 4
+				    Waktu Mulai Pelayanan   : 07:45
+				    Waktu Selesai Pelayanan : 09:15
+				    様様様様様様様様様様様様様様様様様
+				    Nama Hewan              : Kokomi
+				    Datang Pukul            : 08:25
+				    Waktu Layanan           : 30 Menit
+				    Jenis Penyakit          : 
+                                                              1. Luka Ringan (Ringan)
+                                                              2. Bersin (Ringan)
+				    Waktu Tunggu Pelayanan  : 0 Menit
+				    Nilai Prioritas         : 1
+				    Waktu Mulai Pelayanan   : 08:25
+				    Waktu Selesai Pelayanan : 08:55
+				    様様様様様様様様様様様様様様様様様
+				    Nama Hewan              : Meong
+				    Datang Pukul            : 07:15
+				    Waktu Layanan           : 30 Menit
+				    Jenis Penyakit          : 
+                                                              1. Diare (Sedang)
+				    Waktu Tunggu Pelayanan  : 0 Menit
+				    Nilai Prioritas         : 1
+				    Waktu Mulai Pelayanan   : 07:15
+				    Waktu Selesai Pelayanan : 07:45
+				    様様様様様様様様様様様様様様様様様
+				    Nama Hewan              : Blacky
+				    Datang Pukul            : 07:20
+				    Waktu Layanan           : 60 Menit
+				    Jenis Penyakit          : 
+                                                              1. Diare (Sedang)
+                                                              2. Cacingan (Sedang)
+				    Waktu Tunggu Pelayanan  : 25 Menit
+				    Nilai Prioritas         : 3
+				    Waktu Mulai Pelayanan   : 07:45
+				    Waktu Selesai Pelayanan : 08:45
+				    様様様様様様様様様様様様様様様様様
+				    Nama Hewan              : Blacky
+				    Datang Pukul            : 07:20
+				    Waktu Layanan           : 60 Menit
+				    Jenis Penyakit          : 
+                                                              1. Diare (Sedang)
+                                                              2. Cacingan (Sedang)
+				    Waktu Tunggu Pelayanan  : 0 Menit
+				    Nilai Prioritas         : 3
+				    Waktu Mulai Pelayanan   : 07:20
+				    Waktu Selesai Pelayanan : 08:20
+				    様様様様様様様様様様様様様様様様様
+				    Nama Hewan              : Meong
+				    Datang Pukul            : 07:00
+				    Waktu Layanan           : 30 Menit
+				    Jenis Penyakit          : 
+                                                              1. Penyakit Kulit (Ringan)
+                                                              2. Luka Ringan (Ringan)
+				    Waktu Tunggu Pelayanan  : 0 Menit
+				    Nilai Prioritas         : 1
+				    Waktu Mulai Pelayanan   : 07:00
+				    Waktu Selesai Pelayanan : 07:30
+				    様様様様様様様様様様様様様様様様様
+				    Nama Hewan              : Lolo
+				    Datang Pukul            : 07:00
+				    Waktu Layanan           : 30 Menit
+				    Jenis Penyakit          : 
+                                                              1. Penyakit Kulit (Ringan)
+                                                              2. Luka Ringan (Ringan)
+				    Waktu Tunggu Pelayanan  : 0 Menit
+				    Nilai Prioritas         : 1
+				    Waktu Mulai Pelayanan   : 07:00
+				    Waktu Selesai Pelayanan : 07:30
+				    様様様様様様様様様様様様様様様様様
